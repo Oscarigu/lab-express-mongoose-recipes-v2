@@ -64,7 +64,7 @@ app.get("/recipes", async (req, res) => {
 app.get("/recipes/:recipeId", async (req, res) => {
   try {
     const { recipeId } = req.params;
-    const recipe = Recipe.findById(recipeId);
+    const recipe = await Recipe.findById(recipeId);
     res.json(recipe);
   } catch (err) {
     console.error("Error cogiendo la receta", err);
@@ -102,7 +102,7 @@ app.delete("/recipes/:recipeId", async (req, res) => {
   try {
     const { recipeId } = req.params;
 
-    const deletedRecipe = Recipe.findByIdAndDelete(recipeId);
+    const deletedRecipe = await Recipe.findByIdAndDelete(recipeId);
 
     res.json(deletedRecipe);
   } catch (error) {
